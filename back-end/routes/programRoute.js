@@ -12,14 +12,4 @@ const {
 router.route('/').get(getProgram).post(postProgram)
 router.route('/:id').put(putProgram).delete(deleteProgram)
 
-
-
-router.get('/', getProgram)
-
-router.post('/', postProgram)
-
-router.put('/:id', putProgram)
-
-router.delete('/:id', deleteProgram)
-
 module.exports = router

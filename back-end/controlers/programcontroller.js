@@ -6,8 +6,13 @@ const getProgram =(req,res) => {
 
 //@desc post a program
 //@route POST /api/program
-const postProgram =(req,res) => {
-    res.status(200).json({message:'POST program'})
+const postProgram =(req,res) => 
+{
+    if(!req.body.text){
+        res.status(400)
+        throw new Error("add key field please")
+    }
+    res.status(200).json({message:`POST program`})
 }
 
 //@desc put a program
