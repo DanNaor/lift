@@ -1,8 +1,11 @@
 const asyncHandler =require("express-async-handler")
+const Progrem =require('../models/programModel')
+
 //@desc get a program
 //@route GET /api/program
 const getProgram =asyncHandler(async(req,res) => {
-    res.status(200).json({message:'GET program'})
+    const programs= await Progrem.find()
+    res.status(200).json({message:'GET program',programs})
 })
 
 //@desc post a program
