@@ -1,4 +1,9 @@
 const mongoose = require("mongoose")
+
+
+
+
+
 const exerciseScheme = mongoose.Schema({
     name:{
         type:String,
@@ -21,6 +26,9 @@ const exerciseScheme = mongoose.Schema({
         required:[true,'please add a rest time']
     },
 })
+
+
+
 const progremSchema = mongoose.Schema({
     type:{
         type:String,
@@ -34,5 +42,7 @@ const progremSchema = mongoose.Schema({
 }, {
     timestamps:true
 })
+
+
 
 module.exports =mongoose.model('Progrem',progremSchema)
