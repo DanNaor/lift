@@ -23,7 +23,7 @@ const postProgram =asyncHandler(async(req,res) =>
         exercises:body.exercises
 
     })
-    res.status(200).json({message:`created program  type- ${req.body.type}`})
+    res.status(200).json({message:`created program,  type- ${req.body.type}`})
 })
 
 //@desc put a program

@@ -5,7 +5,7 @@ const {
     postProgram,
     putProgram,
     deleteProgram
-} =  require('../controlers/programcontroller')
+} =  require('../controlers/programController')
 
 
 
