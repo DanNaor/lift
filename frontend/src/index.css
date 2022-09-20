@@ -7,6 +7,7 @@
 *{
   font-family: Montserrat;
 }
+/* ########################################welcome page############################################  */
 WelcomePage{
 position: relative;
 width: 1080px;
@@ -21,6 +22,15 @@ top: -5px;
 width: 100%;
 height: 50%;
 }
+/* ########################################text section############################################  */
+.text_section {
+  position: absolute; 
+  left: 18.06%;
+  right: 18.06%;
+  top: 57.25%;
+  bottom: 7.25%;
+  /* border: 4px solid black */
+  }
 .welcome_Text{
 /* margin: 0; */
 position: absolute;
@@ -29,8 +39,6 @@ font-style: normal;
 font-weight: 700;
 font-size: 48px;
 line-height: 36px;
-/* -ms-transform: translate(-50%, -50%);
-transform: translate(-50%, -50%); */
 color: var(--global--color-secondary);
 }
 .start_btn{ 
@@ -73,13 +81,7 @@ text-align: center;
 text-indent: 10px;
 
 /* gray-1 */
-color: #7B6F72;
+color:var(--global--color-comments);
 }
-.text_section {
-position: absolute; 
-left: 18.06%;
-right: 18.06%;
-top: 57.25%;
-bottom: 7.25%;
-/* border: 4px solid black */
-}
+/* ########################################text section############################################  */
+/* ########################################welcome page############################################  */

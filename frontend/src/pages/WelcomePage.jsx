@@ -13,8 +13,7 @@ function WelcomePage() {
       <ThemeProvider theme={colors}>
       <Button className='start_btn' style={{ fontSize: '40px' ,borderRadius:'100px'}} color='main' variant='contained'>LETS GO!!</Button>
       </ThemeProvider>
-      <text className='text_quote'>“When you hit failure, your workout has just begun”
-- Ronnie Coleman.</text>
+      <text className='text_quote'>“When you hit failure, your workout has just begun”- Ronnie Coleman.</text>
       {/* <button className='start_btn' >LETS GO!!</button>   */}
      
      </div>

@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import WelcomePage from './pages/WelcomePage';
 import ChoosingPage from './pages/ChoosingPage'
+import WorkoutSession from './pages/WorkoutSession';
 function App() {
   return (
     <>
@@ -10,8 +11,8 @@ function App() {
         <div className='app'>
           <Routes>
             <Route path='/' element={<WelcomePage />} />
-            {/* <Route path='/ChoosingPage' element={<ChoosingPage />} /> */}
-            {/* <Route path='/register' element={<Register />} /> */}
+            <Route path='/ChoosingPage' element={<ChoosingPage />} />
+            <Route path='/WorkoutSession' element={<WorkoutSession />} />
           </Routes>
         </div>
       </Router>
