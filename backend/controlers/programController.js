@@ -35,7 +35,6 @@ const putProgram =asyncHandler(async(req,res) => {
         res.status(400)
         throw new Error("program not found")
     }
-
     const updatedProgram= await Program.findByIdAndUpdate(req.params.id,req.body,{
         new:true,
     })
