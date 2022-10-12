@@ -1,3 +1,4 @@
+import React from 'react';
 import  logo from '../Assets/WelcomeIcon.png'
 import Button from '@mui/material/Button';
 import colors from '../Assets/colors';

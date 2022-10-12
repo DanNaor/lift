@@ -1,28 +1,40 @@
 {
   "name": "lift",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
-    "client": "npm start --prefix frontend",
-    "dev":"concurrently \"npm run client\" \"npm run server \""
+    "client": "yarn --cwd ./frontend client_run",
+    "dev": "concurrently \"yarn run client\" \"yarn run server \""
   },
   "keywords": [],
-  "author": "",
+  "author": "dan naor",
   "license": "ISC",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "body-parser": "^1.20.0",
+    "browserify-zlib": "^0.2.0",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
-    "mongoose": "^6.5.4"
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^6.5.4",
+    "node-polyfill-webpack-plugin": "^2.0.1",
+    "path-browserify": "^1.0.1"
   },
   "devDependencies": {
     "concurrently": "^7.4.0",
     "nodemon": "^2.0.19"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanNaor/lift.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DanNaor/lift/issues"
+  },
+  "homepage": "https://github.com/DanNaor/lift#readme",
+  "description": "dans personal lift app"
 }
