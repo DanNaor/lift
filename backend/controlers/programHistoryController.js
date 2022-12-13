@@ -4,8 +4,14 @@ const ProgramHistory =require('../models/programHistoryModel')
 //@desc get a program's history
 //@route GET /api/programHistory
 const getHistoryProgram =asyncHandler(async(req,res) => {
-    const ProgramsHistory= await ProgramHistory.find()
-    res.status(200).json({message:`program's history-`,getProgramHistory: ProgramsHistory})
+    const IsCollectionEmpty = await ProgramHistory.count()
+    if(IsCollectionEmpty){
+        const responseData= await ProgramHistory.find() 
+        res.status(200).json({responseData})
+    }
+    else{
+        res.status(200).json({message:'no data'})
+    }
 })
 
 //@desc post a program's history

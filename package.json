@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
-    "client": "yarn --cwd ./frontend client_run",
+    "client": "yarn --cwd ./frontend start",
     "dev": "concurrently \"yarn run client\" \"yarn run server \""
   },
   "keywords": [],

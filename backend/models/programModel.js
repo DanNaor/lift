@@ -1,9 +1,5 @@
 const mongoose = require("mongoose")
 
-
-
-
-
 const exerciseScheme = mongoose.Schema({
     name:{
         type:String,

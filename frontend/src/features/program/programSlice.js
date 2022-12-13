@@ -2,11 +2,9 @@ import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
 import programService from "./programService";
 
 //get program from localstorage
-const program =JSON.parse(localStorage.getItem("program"))
-
-
+const programs =JSON.parse(localStorage.getItem("programs"))
 const initialState={
-    program: program ? program : null,
+    programs: programs ? programs : null,
     isError:false,
     isSuccess:false,
     isLoading:false,
@@ -15,7 +13,7 @@ const initialState={
 
 export const getCurrentProgram = createAsyncThunk(
     'program/getCurrentProgram',
-    async(program,thunkAPI)=>{
+    async(thunkAPI)=>{
         try{
             return await programService.getCurrentProgram()
         }
@@ -29,6 +27,7 @@ export const getCurrentProgram = createAsyncThunk(
         }
     }
 )
+
 export const programSlice = createSlice({
  name:'programSlice',
  initialState,
@@ -42,19 +41,20 @@ export const programSlice = createSlice({
  },
  extraReducers:(builder)=>{
     builder
-    .addCase(getCurrentProgram.pending, (state) => {
+      .addCase(getCurrentProgram.pending, (state) => {
         state.isLoading = true
       })
       .addCase(getCurrentProgram.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.program = action.payload
+        console.log(action.payload)
+        state.programs = action.payload
       })
       .addCase(getCurrentProgram.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
-        state.program = null
+        state.programs = null
       })
  }
 })
