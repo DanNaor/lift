@@ -28,7 +28,7 @@ useEffect(() => {
     }
 
     if (isSuccess||program) {
-        console.log(program)
+      toast.info("data received from db")
     }
 
     // dispatch(reset())
