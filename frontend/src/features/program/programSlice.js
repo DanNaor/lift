@@ -2,9 +2,9 @@ import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
 import programService from "./programService";
 
 //get program from localstorage
-const programs =JSON.parse(localStorage.getItem("programs"))
+const ProgramsList =JSON.parse(localStorage.getItem("programs"))
 const initialState={
-    programs: programs ? programs : null,
+    ProgramsList: ProgramsList ? ProgramsList : null,
     isError:false,
     isSuccess:false,
     isLoading:false,
@@ -47,14 +47,13 @@ export const programSlice = createSlice({
       .addCase(getCurrentProgram.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        console.log(action.payload)
-        state.programs = action.payload
+        state.ProgramsList = action.payload
       })
       .addCase(getCurrentProgram.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
-        state.programs = null
+        state.ProgramsList = null
       })
  }
 })

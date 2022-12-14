@@ -36,7 +36,6 @@ useEffect(() => {
   if (isLoading) {
     return <Spinner/>
   }
-
     return (
       <div>
         <button className='start_btn' onClick={handleClick}></button>
