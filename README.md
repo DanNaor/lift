@@ -13,7 +13,7 @@ Installation
 
 To install the app, follow these steps:
 
-    Clone the repository to your local machine: git clone https://github.com/[your_username]/lift.git
+    Clone the repository to your local machine: git clone https://github.com/DanNaor/lift.git
     Navigate to the project directory: cd lift
     Install the required dependencies: npm install or yarn install
     Run the app: npm dev or yarn dev
