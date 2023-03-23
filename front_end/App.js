@@ -1,14 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import {SafeAreaView,Text, View } from 'react-native';
-import { TailwindProvider } from 'tailwindcss-react-native';
-
+import { SafeAreaView, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import { store } from './app/store'
+import WelcomePage from './pages/WelcomePage';
 export default function App() {
+
   return (
-    <TailwindProvider>  
-    <SafeAreaView>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </SafeAreaView>
-    </TailwindProvider>
+      <Provider store={store}>
+        <SafeAreaView>
+          <WelcomePage></WelcomePage>
+          <StatusBar style="auto" />
+        </SafeAreaView>
+      </Provider>
   );
 }
