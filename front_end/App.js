@@ -10,15 +10,14 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <Provider store={store}>
-      <WelcomeScreen></WelcomeScreen>
-    {/* <NavigationContainer>
+    <NavigationContainer>
       <Stack.Navigator initialRouteName="Welcome Screen">
           <Stack.Screen
           name='Welcome Screen'
-          component={WelcomeScreen}/>
-            <Stack.Screen name="Choosing Screen" component={ChoosingScreen} />
+          component={WelcomeScreen} options={{headerShown: false}}/>
+            <Stack.Screen name="Choosing Screen" component={ChoosingScreen} options={{headerShown: false}}/>
       </Stack.Navigator>
-    </NavigationContainer> */}
+    </NavigationContainer>
     </Provider>
   );
 }
