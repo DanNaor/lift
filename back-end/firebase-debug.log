@@ -1,0 +1,155 @@
+[debug] [2023-03-30T10:04:01.861Z] ----------------------------------------------------------------------
+[debug] [2023-03-30T10:04:01.862Z] Command:       /usr/local/bin/node /usr/local/bin/firebase emulators:start --only functions
+[debug] [2023-03-30T10:04:01.863Z] CLI Version:   11.25.2
+[debug] [2023-03-30T10:04:01.863Z] Platform:      linux
+[debug] [2023-03-30T10:04:01.863Z] Node Version:  v18.14.2
+[debug] [2023-03-30T10:04:01.863Z] Time:          Thu Mar 30 2023 13:04:01 GMT+0300 (Israel Daylight Time)
+[debug] [2023-03-30T10:04:01.864Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-30T10:04:01.965Z] Field ".functions" in "firebase.json" is possibly invalid: should be object
+[debug] [2023-03-30T10:04:01.965Z] Object ".functions[0]" in "firebase.json" has unknown property: {"additionalProperty":"host"}
+[debug] [2023-03-30T10:04:01.965Z] Field ".functions" in "firebase.json" is possibly invalid: should match some schema in anyOf
+[debug] [2023-03-30T10:04:01.970Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-30T10:04:01.970Z] > authorizing via signed-in user (dannaor2001@gmail.com)
+[info] i  emulators: Starting emulators: functions {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions"}}
+[debug] [2023-03-30T10:04:01.976Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-03-30T10:04:01.976Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-03-30T10:04:01.985Z] [hub] writing locator at /tmp/hub-lift-8f86f.json
+[debug] [2023-03-30T10:04:02.001Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-03-30T10:04:02.001Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-03-30T10:04:02.001Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] ⚠  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: auth, firestore, database, hosting, pubsub, storage {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mauth, firestore, database, hosting, pubsub, storage\u001b[22m"}}
+[debug] [2023-03-30T10:04:02.008Z] defaultcredentials: writing to file /home/dan/.config/firebase/dannaor2001_gmail_com_application_default_credentials.json
+[debug] [2023-03-30T10:04:02.011Z] Setting GAC to /home/dan/.config/firebase/dannaor2001_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /home/dan/.config/firebase/dannaor2001_gmail_com_application_default_credentials.json"}}
+[debug] [2023-03-30T10:04:02.013Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/lift-8f86f/adminSdkConfig [none]
+[debug] [2023-03-30T10:04:02.909Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/lift-8f86f/adminSdkConfig 200
+[debug] [2023-03-30T10:04:02.909Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/lift-8f86f/adminSdkConfig {"projectId":"lift-8f86f","storageBucket":"lift-8f86f.appspot.com"}
+[debug] [2023-03-30T10:04:02.940Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-03-30T10:04:02.940Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-03-30T10:04:02.940Z] Starting Emulator UI with command {"binary":"node","args":["/home/dan/.cache/firebase/emulators/ui-v1.11.4/server/server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"/home/dan/.cache/firebase/emulators/ui-v1.11.4/server/server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2023-03-30T10:04:03.040Z] Web / API server started at 127.0.0.1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:4000\n"}}
+[debug] [2023-03-30T10:04:03.040Z] Web / API server started at ::1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at ::1:4000\n"}}
+[info] i  functions: Watching "/home/dan/personal_repos/lift/back-end" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"/home/dan/personal_repos/lift/back-end\" for Cloud Functions..."}}
+[debug] [2023-03-30T10:04:03.209Z] Validating nodejs source
+[debug] [2023-03-30T10:04:03.939Z] > [functions] package.json contents: {
+  "name": "lift",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node back-end/index.js",
+    "server": "nodemon back-end/index.js",
+    "deploy": "firebase deploy --only functions:api"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "firebase-admin": "^11.5.0",
+    "firebase-functions": "^4.2.1",
+    "mongoose": "^6.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
+[debug] [2023-03-30T10:04:03.940Z] Building nodejs source
+[debug] [2023-03-30T10:04:03.940Z] Failed to find version of module node: reached end of search path /home/dan/personal_repos/lift/back-end/node_modules
+[info] ✔  functions: Using node@18 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2023-03-30T10:04:03.943Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-03-30T10:04:03.946Z] Found firebase-functions binary at '/home/dan/personal_repos/lift/back-end/node_modules/.bin/firebase-functions'
+[debug] [2023-03-30T10:04:04.068Z] Serving at port 8090
+
+[debug] [2023-03-30T10:04:04.374Z] server listening on port - 5000
+
+[debug] [2023-03-30T10:04:04.380Z] Got response from /__/functions.yaml {"endpoints":{"api":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-03-30T10:04:04.386Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: api. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: api."}}
+[info] ✔  functions[us-central1-api]: http function initialized (http://127.0.0.1:5001/lift-8f86f/us-central1/api). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/lift-8f86f/us-central1/api)."}}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌───────────┬────────────────┬─────────────────────────────────┐
+│ Emulator  │ Host:Port      │ View in Emulator UI             │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Functions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions │
+└───────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2023-03-30T10:04:51.914Z] [work-queue] {"queuedWork":["/lift-8f86f/us-central1/api-2023-03-30T10:04:51.914Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2023-03-30T10:04:51.914Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/lift-8f86f/us-central1/api-2023-03-30T10:04:51.914Z"],"workRunningCount":1}
+[debug] [2023-03-30T10:04:51.914Z] Accepted request GET /lift-8f86f/us-central1/api --> us-central1-api
+[debug] [2023-03-30T10:04:51.918Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2023-03-30T10:04:51.919Z] [functions] Got req.url=/lift-8f86f/us-central1/api, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/lift-8f86f/us-central1/api, mapping to path=/"}}
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2023-03-30T10:04:51.930Z] [worker-pool] addWorker(us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(us-central1-api)"}}
+[debug] [2023-03-30T10:04:51.931Z] [worker-pool] Adding worker with key us-central1-api, total=1 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-api, total=1"}}
+[debug] [2023-03-30T10:04:52.603Z] [runtime-status] [15103] Resolved module firebase-admin {"declared":true,"installed":true,"version":"11.5.0","resolution":"/home/dan/personal_repos/lift/back-end/node_modules/firebase-admin/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [15103] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"11.5.0\",\"resolution\":\"/home/dan/personal_repos/lift/back-end/node_modules/firebase-admin/lib/index.js\"}"}}
+[debug] [2023-03-30T10:04:52.603Z] [runtime-status] [15103] Resolved module firebase-functions {"declared":true,"installed":true,"version":"4.2.1","resolution":"/home/dan/personal_repos/lift/back-end/node_modules/firebase-functions/lib/v1/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [15103] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"4.2.1\",\"resolution\":\"/home/dan/personal_repos/lift/back-end/node_modules/firebase-functions/lib/v1/index.js\"}"}}
+[debug] [2023-03-30T10:04:52.604Z] [runtime-status] [15103] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [15103] Outgoing network have been stubbed. [{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"net\",\"status\":\"mocked\"}]"}}
+[debug] [2023-03-30T10:04:52.605Z] [runtime-status] [15103] Resolved module firebase-functions {"declared":true,"installed":true,"version":"4.2.1","resolution":"/home/dan/personal_repos/lift/back-end/node_modules/firebase-functions/lib/v1/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [15103] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"4.2.1\",\"resolution\":\"/home/dan/personal_repos/lift/back-end/node_modules/firebase-functions/lib/v1/index.js\"}"}}
+[debug] [2023-03-30T10:04:52.735Z] [runtime-status] [15103] Checked functions.config() {"config":{}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [15103] Checked functions.config() {\"config\":{}}"}}
+[debug] [2023-03-30T10:04:52.735Z] [runtime-status] [15103] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"4.2.1","resolution":"/home/dan/personal_repos/lift/back-end/node_modules/firebase-functions/lib/v1/index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [15103] firebase-functions has been stubbed. {\"functionsResolution\":{\"declared\":true,\"installed\":true,\"version\":\"4.2.1\",\"resolution\":\"/home/dan/personal_repos/lift/back-end/node_modules/firebase-functions/lib/v1/index.js\"}}"}}
+[debug] [2023-03-30T10:04:52.737Z] [runtime-status] [15103] Resolved module firebase-functions {"declared":true,"installed":true,"version":"4.2.1","resolution":"/home/dan/personal_repos/lift/back-end/node_modules/firebase-functions/lib/v1/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [15103] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"4.2.1\",\"resolution\":\"/home/dan/personal_repos/lift/back-end/node_modules/firebase-functions/lib/v1/index.js\"}"}}
+[debug] [2023-03-30T10:04:52.737Z] [runtime-status] [15103] Resolved module firebase-admin {"declared":true,"installed":true,"version":"11.5.0","resolution":"/home/dan/personal_repos/lift/back-end/node_modules/firebase-admin/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [15103] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"11.5.0\",\"resolution\":\"/home/dan/personal_repos/lift/back-end/node_modules/firebase-admin/lib/index.js\"}"}}
+[debug] [2023-03-30T10:04:52.739Z] [runtime-status] [15103] Resolved module firebase-functions {"declared":true,"installed":true,"version":"4.2.1","resolution":"/home/dan/personal_repos/lift/back-end/node_modules/firebase-functions/lib/v1/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [15103] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"4.2.1\",\"resolution\":\"/home/dan/personal_repos/lift/back-end/node_modules/firebase-functions/lib/v1/index.js\"}"}}
+[debug] [2023-03-30T10:04:52.740Z] [runtime-status] [15103] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"11.5.0","resolution":"/home/dan/personal_repos/lift/back-end/node_modules/firebase-admin/lib/index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [15103] firebase-admin has been stubbed. {\"adminResolution\":{\"declared\":true,\"installed\":true,\"version\":\"11.5.0\",\"resolution\":\"/home/dan/personal_repos/lift/back-end/node_modules/firebase-admin/lib/index.js\"}}"}}
+[debug] [2023-03-30T10:04:52.965Z] [runtime-status] [15103] Functions runtime initialized. {"cwd":"/home/dan/personal_repos/lift/back-end","node_version":"18.14.2"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [15103] Functions runtime initialized. {\"cwd\":\"/home/dan/personal_repos/lift/back-end\",\"node_version\":\"18.14.2\"}"}}
+[info] >  server listening on port - 5000 {"user":"\u001b[4m\u001b[32mserver listening on port - 5000\u001b[39m\u001b[24m","metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"\u001b[90m> \u001b[39m \u001b[4m\u001b[32mserver listening on port - 5000\u001b[39m\u001b[24m"}}
+[debug] [2023-03-30T10:04:52.967Z] [runtime-status] [15103] Listening to port: /tmp/fire_emu_1412318df0a9420d.sock {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [15103] Listening to port: /tmp/fire_emu_1412318df0a9420d.sock"}}
+[debug] [2023-03-30T10:04:53.044Z] [worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: IDLE"}}
+[debug] [2023-03-30T10:04:53.045Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2023-03-30T10:04:53.046Z] [worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: BUSY"}}
+[info] i  functions: Finished "us-central1-api" in 7.586623ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 7.586623ms"}}
+[debug] [2023-03-30T10:04:53.054Z] [worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: IDLE"}}
+[debug] [2023-03-30T10:04:53.055Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2023-03-30T10:05:01.546Z] [work-queue] {"queuedWork":["/lift-8f86f/us-central1/api/program-2023-03-30T10:05:01.546Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2023-03-30T10:05:01.546Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/lift-8f86f/us-central1/api/program-2023-03-30T10:05:01.546Z"],"workRunningCount":1}
+[debug] [2023-03-30T10:05:01.546Z] Accepted request GET /lift-8f86f/us-central1/api/program --> us-central1-api
+[debug] [2023-03-30T10:05:01.552Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2023-03-30T10:05:01.553Z] [functions] Got req.url=/lift-8f86f/us-central1/api/program, mapping to path=/program {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/lift-8f86f/us-central1/api/program, mapping to path=/program"}}
+[debug] [2023-03-30T10:05:01.553Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2023-03-30T10:05:01.553Z] [worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: BUSY"}}
+[info] i  functions: Finished "us-central1-api" in 5.574475ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 5.574475ms"}}
+[debug] [2023-03-30T10:05:01.560Z] [worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: IDLE"}}
+[debug] [2023-03-30T10:05:01.560Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2023-03-30T10:05:05.529Z] [work-queue] {"queuedWork":["/lift-8f86f/us-central1/api/program-2023-03-30T10:05:05.529Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2023-03-30T10:05:05.529Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/lift-8f86f/us-central1/api/program-2023-03-30T10:05:05.529Z"],"workRunningCount":1}
+[debug] [2023-03-30T10:05:05.529Z] Accepted request GET /lift-8f86f/us-central1/api/program --> us-central1-api
+[debug] [2023-03-30T10:05:05.533Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2023-03-30T10:05:05.533Z] [functions] Got req.url=/lift-8f86f/us-central1/api/program, mapping to path=/program {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/lift-8f86f/us-central1/api/program, mapping to path=/program"}}
+[debug] [2023-03-30T10:05:05.533Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2023-03-30T10:05:05.533Z] [worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: BUSY"}}
+[info] i  functions: Finished "us-central1-api" in 2.775334ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 2.775334ms"}}
+[debug] [2023-03-30T10:05:05.536Z] [worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: IDLE"}}
+[debug] [2023-03-30T10:05:05.537Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2023-03-30T10:05:06.235Z] [work-queue] {"queuedWork":["/lift-8f86f/us-central1/api/program-2023-03-30T10:05:06.235Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2023-03-30T10:05:06.235Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/lift-8f86f/us-central1/api/program-2023-03-30T10:05:06.235Z"],"workRunningCount":1}
+[debug] [2023-03-30T10:05:06.235Z] Accepted request GET /lift-8f86f/us-central1/api/program --> us-central1-api
+[debug] [2023-03-30T10:05:06.238Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2023-03-30T10:05:06.238Z] [functions] Got req.url=/lift-8f86f/us-central1/api/program, mapping to path=/program {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/lift-8f86f/us-central1/api/program, mapping to path=/program"}}
+[debug] [2023-03-30T10:05:06.238Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2023-03-30T10:05:06.239Z] [worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: BUSY"}}
+[info] i  functions: Finished "us-central1-api" in 3.221864ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 3.221864ms"}}
+[debug] [2023-03-30T10:05:06.243Z] [worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-4f024579-721c-435e-8c7c-45cc99895812]: IDLE"}}
+[debug] [2023-03-30T10:05:06.243Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
