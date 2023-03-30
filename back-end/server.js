@@ -6,6 +6,7 @@ const app = express()
 const {errorHandler} =require("./middleware/errorMiddleware")
 const connectDB =require("./config/db")
 const bp = require('body-parser')
+const functions = require("firebase-functions")
 connectDB()
 
 
@@ -21,3 +22,6 @@ app.use("/api/programHistory",require('./routes/programHistoryRoute'))
 app.use(errorHandler)
 
 app.listen(port,() => console.log(`server listening on port - ${port}`.green.underline))
+
+
+exports.api=functions.https.onRequest(app)
