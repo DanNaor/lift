@@ -4,10 +4,10 @@ const port =  5000
 const colors = require("colors")
 const app = express()
 const {errorHandler} =require("./middleware/errorMiddleware")
-// const connectDB =require("./config/db")
+const connectDB =require("./config/db")
 const bp = require('body-parser')
 const functions = require("firebase-functions")
-// connectDB()
+connectDB()
 
 
 //@desc middleware for parsing incoming requests with JSON payloads 
