@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
-import { store } from './app/store'
+import { store } from './src/app/store'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ChoosingScreen from './screens/ChoosingScreen';
-import WelcomeScreen from './screens/WelcomeScreen';
+import ChoosingScreen from './src/screens/ChoosingScreen';
+import WelcomeScreen from './src/screens/WelcomeScreen';
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
