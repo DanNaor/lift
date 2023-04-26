@@ -6,18 +6,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ChoosingScreen from './src/screens/ChoosingScreen';
 import WelcomeScreen from './src/screens/WelcomeScreen';
-const Stack = createNativeStackNavigator();
+import { storeData, getItemFor } from './src/helpers/storageHelper';
+import { useEffect, useState } from 'react';
+import "./config/firebase-config"
+import MainNavigator from './src/stacksNavs/MainNavigator';
 export default function App() {
   return (
     <Provider store={store}>
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome Screen">
-          <Stack.Screen
-          name='Welcome Screen'
-          component={WelcomeScreen} options={{headerShown: false}}/>
-            <Stack.Screen name="Choosing Screen" component={ChoosingScreen} options={{headerShown: false}}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <MainNavigator />
+      </NavigationContainer>
     </Provider>
   );
 }

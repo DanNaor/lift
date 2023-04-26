@@ -1,11 +1,21 @@
 import { View, Text } from 'react-native'
-import React ,{ useEffect } from 'react'
+import React ,{ Alert,useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { reset, getCurrentProgram } from '../features/program/programSlice'
 import Toast from 'react-native-toast-message';
-export default function ChoosingScreen() {
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Button } from '@rneui/base';
+function ChoosingScreen() {
+ 
   const dispatch = useDispatch()
-
+  const handlePress = async ()=>{
+    try {
+      await AsyncStorage.clear();
+      console.log("cleared")
+    } catch (error) {
+      console.error('Error clearing AsyncStorage:', error);
+    }
+  }
   const { program, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.program
   )
@@ -39,6 +49,8 @@ export default function ChoosingScreen() {
   return (
     <View>
       <Text>ChoosingScreen</Text>
+      <Button title={"clear async storage"} onPress={handlePress}></Button>
     </View>
   )
 }
+export default ChoosingScreen

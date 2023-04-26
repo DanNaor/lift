@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import programService from "./programService";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 //get program from storage
 const getProgramsList = async () => {
   const programsList = await AsyncStorage.getItem('programs');
@@ -42,6 +41,7 @@ export const programSlice = createSlice({
   name: 'programSlice',
   initialState,
   reducers: {
+    // for resetting state
     reset: (state) => {
       state.isLoading = false
       state.isError = false
