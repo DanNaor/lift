@@ -1,53 +1,34 @@
 const mongoose = require("mongoose")
 const exercise = require("./programModel")
 
-// const exerciseScheme = mongoose.Schema({
-//     name:{
-//         type:String,
-//         required:[true,'please add a name']
-//     },
-//     sets:{
-//         type:Number,
-//         required:[true,'please add a sets']
-//     },
-//     reps:{
-//         type:Number,
-//         required:[true,'please add a reps']
-//     },
-//     weight:{
-//         type:Number,
-//         required:[true,'please add a weight']
-//     },
-//     rest_time_in_Sec:{
-//         type:Number,
-//         required:[true,'please add a rest time']
-//     },
-// })
-
 
 const programHistoryScheme = mongoose.Schema({
-    type:{
-        type:String,
-        required:[true,'please add a type']
+    UID: {
+        type: String,
+        required: [true, 'please add a UID']
     },
-    date:{
-        type:Date,
-        required:[true,'please add a date']
+    type: {
+        type: String,
+        required: [true, 'please add a type']
     },
-    workout_starting_time:{
-        type:Number,
-        required:[true,'please add a workout_starting_time']
+    date: {
+        type: Date,
+        required: [true, 'please add a date']
     },
-    time_took:{
-        type:Number,
-        required:[true,'please add a time_took']
+    workout_starting_time: {
+        type: Number,
+        required: [true, 'please add a workout_starting_time']
     },
-    
-    exercises:[exercise.schema],
+    time_took: {
+        type: Number,
+        required: [true, 'please add a time_took']
+    },
+
+    exercises: [exercise.schema],
 }, {
-    timestamps:true
+    timestamps: true
 })
 
 
 
-module.exports =mongoose.model('programHistory',programHistoryScheme)
+module.exports = mongoose.model('programHistory', programHistoryScheme)

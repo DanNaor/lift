@@ -1,15 +1,22 @@
 const express = require("express")
 const router = express.Router()
+const verifyToken = require("../middleware/verifyTokenMiddleware");
 const {
     getProgram,
     postProgram,
     putProgram,
     deleteProgram
-} =  require('../controlers/programController')
+} =  require('../controlers/programController');
 
 
 
-router.route('/').get(getProgram).post(postProgram)
-router.route('/:id').put(putProgram).delete(deleteProgram)
+router.route('/')
+  .get(verifyToken, getProgram)
+  .post(verifyToken, postProgram);
+  
+router.route('/:id')
+  .put(verifyToken, putProgram)
+  .delete(verifyToken, deleteProgram);
+
 
 module.exports = router

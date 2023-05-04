@@ -1,39 +1,27 @@
+// authService.js
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const setAuthInStorage = async (token) => {
+export const setAuthInStorage = async (authData) => {
   try {
-    await AsyncStorage.setItem("token", JSON.stringify(token));
+    await AsyncStorage.setItem("authData", JSON.stringify(authData));
   } catch (error) {
-    console.log("Error setting token in AsyncStorage: ", error);
+    console.log("Error setting authData in AsyncStorage: ", error);
   }
 };
 
-export const getTokenInStorage = async () => {
+export const getAuthFromStorage = async () => {
   try {
-    const Token = await AsyncStorage.getItem("token");
-    console.log("token =",Token)
-    return Token;
+    const authData = await AsyncStorage.getItem("authData");
+    return authData ? JSON.parse(authData) : null;
   } catch (error) {
-    console.log("Error getting token from AsyncStorage: ", error);
+    console.log("Error getting auth data from AsyncStorage: ", error);
   }
 };
-export const clearAsyncStorage = async () => {
+
+export const clearAuthData = async () => {
   try {
-    const keys = await AsyncStorage.getAllKeys();
-    await AsyncStorage.multiRemove(keys);
+    await AsyncStorage.removeItem("authData");
   } catch (error) {
-    console.error(error);
+    console.log("Error clearing auth data from AsyncStorage: ", error);
   }
-}
-// export const Init = () => {
-//   return async dispatch => {
-//     let token = await AsyncStorage.getItem('token');
-//     if (token !== null) {
-//       console.log('token fetched');
-//       dispatch({
-//         type: 'LOGIN',
-//         payload: token,
-//       })
-//     }
-//   }
-// }
+};

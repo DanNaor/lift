@@ -8,6 +8,7 @@ const connectDB = require("./config/db");
 const programRoute = require("./routes/programRoute");
 const programHistoryRoute = require('./routes/programHistoryRoute');
 const functions = require("firebase-functions");
+const admin= require("./config/firebaseAdmin");
 connectDB();
 
 const app = express();
@@ -15,12 +16,13 @@ const app = express();
 // Middleware
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
+app.use(errorHandler);
 
 // Routes
 app.use("/program", programRoute);
 app.use("/programHistory", programHistoryRoute);
 
-app.use(errorHandler);
+
 
 app.listen( 5000, () =>
   console.log(`Server listening on port ${5000}`.green.underline)

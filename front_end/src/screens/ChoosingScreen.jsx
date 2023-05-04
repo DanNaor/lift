@@ -48,8 +48,8 @@ function ChoosingScreen() {
   
   return (
     <View>
+      <Button handlePress={handlePress}>clear async </Button>
       <Text>ChoosingScreen</Text>
-      <Button title={"clear async storage"} onPress={handlePress}></Button>
     </View>
   )
 }

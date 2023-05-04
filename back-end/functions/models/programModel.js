@@ -1,9 +1,6 @@
 const mongoose = require("mongoose")
 
 
-
-
-
 const exerciseScheme = mongoose.Schema({
     name:{
         type:String,
@@ -27,9 +24,15 @@ const exerciseScheme = mongoose.Schema({
     },
 })
 
-
+const setSchema = mongoose.Schema({
+   
+})
 
 const programSchema = mongoose.Schema({
+    UID:{
+        type:String,
+        required:[true,'please add a UID']
+    },
     type:{
         type:String,
         required:[true,'please add a type']
