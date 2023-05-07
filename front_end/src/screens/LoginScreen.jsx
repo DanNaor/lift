@@ -1,34 +1,46 @@
-import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { GoogleAuthProvider } from "firebase/auth";
-import { loginWithGoogle } from '../features/auth/authSlice';
-import Config from 'react-native-config';
-import { Button } from '@rneui/base';
-
-const { width, height } = Dimensions.get('window');
-
-
+import { loginWithGoogle, loginWithEmail } from '../features/auth/authSlice';
+import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput } from 'react-native';
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const handleGoogleSignIn = async () => {
-      dispatch(loginWithGoogle());
+    dispatch(loginWithGoogle());
+  };
+
+  const handleEmailSignIn = async () => {
+    dispatch(loginWithEmail({ email, password }));
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign In</Text>
-      <Button
-        style={styles.googleButton}
-        onPress={handleGoogleSignIn}
-      />
-      <Text style={styles.divider}>Or</Text>
-      <TextInput style={styles.input} placeholder="Email" />
-      <TextInput style={styles.input} placeholder="Password" secureTextEntry />
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Sign in with Email and Password</Text>
+      <Text style={styles.title}>Login</Text>
+      <TouchableOpacity onPress={handleGoogleSignIn} style={styles.googleButton}>
+        <Image source={require('../assets/g_logo.png')} style={styles.googleIcon} />
+        <Text style={styles.googleText}>Sign in with Google</Text>
       </TouchableOpacity>
+      <View style={styles.emailContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
+        <TouchableOpacity onPress={handleEmailSignIn} style={styles.emailButton}>
+          <Text style={styles.emailText}>Sign in with Email</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -36,42 +48,61 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: '#111',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 50,
+  },
   title: {
-    fontSize: 32,
-    color: 'white',
-    marginBottom: 48,
-  },
-  button: {
-    backgroundColor: 'white',
-    borderRadius: 8,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    marginVertical: 8,
-  },
-  buttonText: {
-    fontSize: 18,
+    color: '#fff',
+    fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
-  },
-  divider: {
-    color: 'white',
-    marginVertical: 24,
-  },
-  input: {
-    backgroundColor: 'white',
-    width: '80%',
-    borderRadius: 8,
-    padding: 12,
-    marginBottom: 16,
+    marginBottom: 30,
   },
   googleButton: {
-    width: width * 0.8,
-    height: 48,
-    marginBottom: 16,
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 25,
+    marginBottom: 20,
+  },
+  googleIcon: {
+    width: 20,
+    height: 20,
+    marginRight: 10,
+  },
+  googleText: {
+    color: '#111',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  emailContainer: {
+    marginTop: 30,
+    width: '80%',
+  },
+  input: {
+    backgroundColor: '#fff',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 25,
+    marginBottom: 20,
+  },
+  emailButton: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    paddingVertical: 10,
+    borderRadius: 25,
+  },
+  emailText: {
+    color: '#111',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

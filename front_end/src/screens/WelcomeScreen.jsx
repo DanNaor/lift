@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   image: {
-    marginbuttom:"-10%",
+    marginTop:"-10%",
     width: width,
     height: height / 1.8,
   },
