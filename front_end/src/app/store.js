@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import programReducer from "../features/program/programSlice";
 import authReducer from "../features/auth/authSlice";
+import reactotron from "../../config/ReactotronConfig";
 
 export const store = configureStore({
   reducer: {
     program: programReducer,
     auth: authReducer,
   },
+  enhancers:[reactotron.createEnhancer()],
 });
