@@ -3,8 +3,13 @@ const mongoose = require("mongoose")
 
 const connectDB= async()=>{
     try{
-        const conn = await mongoose.connect("mongodb+srv://dan:yrah4028@liftcluster.gcftmbw.mongodb.net/?retryWrites=true&w=majority")
-
+        console.log(`connecting...`.cyan.underline)
+        mongoose.set('debug', true);
+        const URI="mongodb+srv://dan:8809349@liftcluster.uotnzhn.mongodb.net/?retryWrites=true&w=majority"
+        const conn = await mongoose.connect(URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+          });
         console.log(`MongoDB connected :${conn.connection.host}`.cyan.underline)
     }
     catch(error) {

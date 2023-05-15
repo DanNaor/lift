@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { loginWithGoogle, loginWithEmail } from '../features/auth/authSlice';
-import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput } from 'react-native';
+import React, { useState,useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {  login, selectError } from '../features/auth/authSlice';
+import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput ,Alert} from 'react-native';
 import { Dimensions } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
@@ -11,22 +11,22 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const error = useSelector(selectError);
 
-  const handleGoogleSignIn = async () => {
-    dispatch(loginWithGoogle());
-  };
+  useEffect(() => {
+    if (error) {
+      Alert.alert('Error', error);
+      console.log(error)
+    }
+  }, [error]);
 
   const handleEmailSignIn = async () => {
-    dispatch(loginWithEmail({ email, password }));
+    dispatch(login({ email, password }));
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
-      <TouchableOpacity onPress={handleGoogleSignIn} style={styles.googleButton}>
-        <Image source={require('../assets/g_logo.png')} style={styles.googleIcon} />
-        <Text style={styles.googleText}>Sign in with Google</Text>
-      </TouchableOpacity>
       <View style={[styles.dividerContainer, {height: screenHeight * 0.05}]}>
         <View style={styles.dividerLine}></View>
         <Text style={styles.dividerText}>or</Text>

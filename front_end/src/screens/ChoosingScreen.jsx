@@ -1,10 +1,13 @@
-import { View, Text } from 'react-native'
+import { View, Text,StyleSheet } from 'react-native'
 import React ,{ Alert,useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { reset, getCurrentProgram } from '../features/program/programSlice'
 import Toast from 'react-native-toast-message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button } from '@rneui/base';
+import { Dimensions } from 'react-native';
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 function ChoosingScreen() {
  
   const dispatch = useDispatch()
@@ -48,9 +51,19 @@ function ChoosingScreen() {
   
   return (
     <View>
-      <Button handlePress={handlePress}>clear async </Button>
-      <Text>ChoosingScreen</Text>
+      <Text style={styles.title}>ChoosingScreen</Text>
     </View>
   )
+  
 }
+const styles = StyleSheet.create({
+  title: {
+    color: 'black',
+    fontSize: screenWidth < 400 ? 20 : 30,
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+    });
+    
 export default ChoosingScreen

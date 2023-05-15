@@ -7,10 +7,11 @@ const { errorHandler } = require("./middleware/errorMiddleware");
 const connectDB = require("./config/db");
 const programRoute = require("./routes/programRoute");
 const programHistoryRoute = require('./routes/programHistoryRoute');
+const userRoute = require(('./routes/userRoute'))
 const functions = require("firebase-functions");
 const admin= require("./config/firebaseAdmin");
-connectDB();
-
+connectDB()
+// .then(() => {
 const app = express();
 
 // Middleware
@@ -18,14 +19,18 @@ app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 app.use(errorHandler);
 
-// Routes
-app.use("/program", programRoute);
-app.use("/programHistory", programHistoryRoute);
+// .then(() => {
+  // Routes 
+  app.use("/program", programRoute);
+  app.use("/programHistory", programHistoryRoute);
+  app.use("/user", userRoute);
+  app.listen(5000, () =>
+    console.log(`Server listening on port ${5000}`.green.underline)
+  );
 
-
-
-app.listen( 5000, () =>
-  console.log(`Server listening on port ${5000}`.green.underline)
-);
-
-exports.api = functions.https.onRequest(app);
+  exports.api = functions.https.onRequest(app);
+// }).catch((error) => {
+//   console.log("an error occurred while trying to connect to mongodb cluster")
+//   console.log(error);
+//   process.exit(1);
+// });

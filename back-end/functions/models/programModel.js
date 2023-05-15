@@ -28,6 +28,7 @@ const setSchema = mongoose.Schema({
    
 })
 
+
 const programSchema = mongoose.Schema({
     UID:{
         type:String,
@@ -48,4 +49,4 @@ const programSchema = mongoose.Schema({
 
 
 module.exports =mongoose.model('Exercise',exerciseScheme)
-module.exports =mongoose.model('Program',programSchema)
+module.exports =mongoose.model('Program',programSchema)                                             
