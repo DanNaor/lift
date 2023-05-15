@@ -10,27 +10,22 @@ const programHistoryRoute = require('./routes/programHistoryRoute');
 const userRoute = require(('./routes/userRoute'))
 const functions = require("firebase-functions");
 const admin= require("./config/firebaseAdmin");
+
 connectDB()
-// .then(() => {
 const app = express();
 
 // Middleware
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
-app.use(errorHandler);
 
-// .then(() => {
   // Routes 
-  app.use("/program", programRoute);
-  app.use("/programHistory", programHistoryRoute);
+  // app.use("/program", programRoute);
+  // app.use("/programHistory", programHistoryRoute);
   app.use("/user", userRoute);
+  app.use(errorHandler);
+
   app.listen(5000, () =>
     console.log(`Server listening on port ${5000}`.green.underline)
   );
 
   exports.api = functions.https.onRequest(app);
-// }).catch((error) => {
-//   console.log("an error occurred while trying to connect to mongodb cluster")
-//   console.log(error);
-//   process.exit(1);
-// });

@@ -1,14 +1,14 @@
 const asyncHandler =require("express-async-handler")
 const Program =require('../models/programModel')
 
-//@desc get all programs by UID
+//@desc get all programs by UserID
 //@route GET /api/program
 const getProgram =asyncHandler(async(req,res) => {
-    const UID = req.user; 
+    const UserID = req.user; 
     const CollectionEmpty = await Program.count()
     if(CollectionEmpty){
         // const responseData= await Program.find()
-        res.status(200).json(await Program.find({ UID: UID }))
+        res.status(200).json(await Program.find({ UserID: UserID }))
     }
     else{
         res.status(200).json({message:'no data'})
@@ -19,8 +19,8 @@ const getProgram =asyncHandler(async(req,res) => {
 //@route POST /api/program
 const postProgram =asyncHandler(async(req,res) => 
 {
-    const UID = req.user; 
-    console.log('UID-',UID)
+    const UserID = req.user; 
+    console.log('UserID-',UserID)
          for (let i = 0; i < req.body.exercises.length; i++) {
             const exercise = req.body.exercises[i];
             if (!exercise.name || !exercise.sets || !exercise.reps || !exercise.weight || !exercise.rest_time_in_Sec) {
@@ -33,7 +33,7 @@ const postProgram =asyncHandler(async(req,res) =>
         }
         let body = req.body
         const program = await Program.create({
-            UID:UID,
+            UserID:UserID,
             type:body.type,
             time:body.time,
             exercises:body.exercises
@@ -42,10 +42,10 @@ const postProgram =asyncHandler(async(req,res) =>
      
 )
 
-//@desc put a program by program's id not UID !
+//@desc put a program by program's id not UserID !
 //@route PUT /api/program:id
 const putProgram =asyncHandler(async(req,res) => {
-    const UID = req.user.uid; 
+    const UserID = req.user.UserID; 
     const program = await Program.findById(req.params.id)
 
     if(!program){

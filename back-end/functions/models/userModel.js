@@ -22,7 +22,6 @@ const exerciseScheme = mongoose.Schema({
     },
 })
 
-
 const practiceSchema = mongoose.Schema({
     type: {
         type: String,
@@ -63,8 +62,4 @@ const UserSchema = mongoose.Schema({
         timestamps: true,
     });
 
-UserSchema.pre('save', function (next) {
-    this.collection.name = 'users_' + this.UserID.toString();
-    next();
-});
 module.exports = mongoose.model('User', UserSchema);

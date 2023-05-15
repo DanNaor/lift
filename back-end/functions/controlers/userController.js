@@ -1,51 +1,64 @@
 const asyncHandler = require("express-async-handler")
 const User = require('../models/userModel')
-const mongoose = require("mongoose")
+// const mongoose = require("mongoose")
 
 //@desc user data by UID
 //@route GET /api/user
 const getUser = asyncHandler(async (req, res) => {
-  const { UserID} = req.user;
-  const userCollectionName = `users_${UserID}`;
-  const userCollection =  mongoose.connection.db.collection(userCollectionName);
-  if (!userCollection) {
-    return res.status(404).json({ message: 'User not found' });
+  console.log(req)
+  const user = await User.findOne({ UserID: req.user.UserID });
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
   }
-  const userData = await userCollection.find({}).toArray();
-  res.json(userData);
-})
-
-//@desc post a new user
-//@route GET /api/user
-const createUser = asyncHandler(async(req,res)=> {
-  const { UserID, email, name, phoneNumber } = req.user;
-  console.log(UserID, email, name, phoneNumber)
-  const userCollectionName = `users_${UserID.toString()}`;
-  const existingUser = checkUserCollectionExists(userCollectionName)
-  if (existingUser) {
-    res.status(409).json({ message: 'User already exists' });
-  } else {
-    const CreatedUser = await User.create({
-      UserID: UserID,
-      email: email,
-      name: name,
-      phoneNumber: phoneNumber
-    })
-    res.status(201).json({ message: `User-${UserID} created` });
-  }
-  // res.status(201).json({ message: `hi` });
+  res.json(user);
 });
 
 
-const checkUserCollectionExists = async (userId) => {
-  const collections = await mongoose.connection.db.listCollections().toArray();
-  const userCollectionName = `users_${userId}`;
+//@desc post a new user
+//@route POST /api/user
+const createUser = asyncHandler(async (req, res) => {
+  const { UserID, email, name, phoneNumber } = req.user;
+  // Check if user already exists
+  const existingUser = await User.findOne({ UserID });
+  if (existingUser) {
+    return res.status(409).json({ message: 'User already exists' });
+  }
 
-  return collections.some((collection) => collection.name === userCollectionName);
-};
+  // Create new user
+  const newUser = new User({
+    UserID,
+    email,
+    name,
+    phoneNumber,
+  });
+
+  try {
+    const savedUser = await newUser.save();
+    res.status(201).json({ message: "added user -\n"+savedUser });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+//@desc delete a new user
+//@route DELETE /api/user
+const deleteUser = asyncHandler(async (req, res) => {
+
+  try {
+    const deletedUser = await User.findOneAndDelete({ UserID: req.user.UserID });
+    if (!deletedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json({ message: 'User deleted', deletedUser });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 
 module.exports = {
   createUser,
   getUser,
+  deleteUser,
 }
