@@ -1,42 +1,70 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from 'react';
 import {
-  StyleSheet,
-  View,
-  Text,
+  Dimensions,
+  FlatList,
   Image,
+  StyleSheet,
+  Text,
   TouchableOpacity,
-} from "react-native";
+  View,
+} from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+const viewConfigRef = { viewAreaCoveragePercentThreshold: 95 };
 
 const Carousel = ({ images }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [dots, setDots] = useState([...Array(images.length).keys()]);
+  const flatListRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleDotPress = (index) => {
-    setActiveIndex(index);
+  const onViewRef = useRef(({ changed }) => {
+    if (changed[0].isViewable) {
+      setCurrentIndex(changed[0].index);
+    }
+  });
+
+  const scrollToIndex = (index) => {
+    flatListRef.current?.scrollToIndex({ animated: true, index });
+  };
+
+  const renderItems = ({ item }) => {
+    return (
+      <TouchableOpacity
+        onPress={() => console.log('clicked')}
+        activeOpacity={1}
+      >
+        <Image source={{ uri: item.url }} style={styles.image} />
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>{item.title}</Text>
+          <Text style={styles.footerText}>{item.promo}</Text>
+        </View>
+      </TouchableOpacity>
+    );
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.carousel}>
-        {images.map((image, index) => (
+      <FlatList
+        data={images}
+        renderItem={renderItems}
+        keyExtractor={(item, index) => index.toString()}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled
+        ref={flatListRef}
+        style={styles.carousel}
+        viewabilityConfig={viewConfigRef}
+        onViewableItemsChanged={onViewRef.current}
+      />
+
+      <View style={styles.dotView}>
+        {images.map((_, index) => (
           <TouchableOpacity
-            key={index}
-            onPress={() => setActiveIndex(index)}
-            style={styles.image}
-          >
-            <Image
-              source={image}
-              style={styles.image}
-            />
-          </TouchableOpacity>
-        ))}
-      </View>
-      <View style={styles.dots}>
-        {dots.map((dot, index) => (
-          <View
-            key={index}
-            style={[styles.dot, dot === activeIndex && styles.activeDot]}
-            onPress={() => handleDotPress(dot)}
+            key={index.toString()}
+            style={[
+              styles.circle,
+              { backgroundColor: index === currentIndex ? 'black' : 'grey' },
+            ]}
+            onPress={() => scrollToIndex(index)}
           />
         ))}
       </View>
@@ -46,35 +74,41 @@ const Carousel = ({ images }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: 200,
+    flex: 1,
+    backgroundColor: '#fff',
   },
   carousel: {
-    width: "100%",
-    height: "100%",
-    borderRadius: 10,
+    maxHeight: 300,
   },
   image: {
-    width: "100%",
-    height: "100%",
-    borderRadius: 10,
+    width,
+    height: 250,
+    resizeMode: 'cover',
   },
-  dots: {
-    width: "100%",
-    height: 20,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 50,
+    paddingHorizontal: 40,
+    alignItems: 'center',
+    backgroundColor: '#000',
   },
-  dot: {
+  footerText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  dotView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 20,
+  },
+  circle: {
     width: 10,
     height: 10,
+    backgroundColor: 'grey',
     borderRadius: 50,
-    backgroundColor: "#ccc",
-    margin: 5,
-  },
-  activeDot: {
-    backgroundColor: "#000",
+    marginHorizontal: 5,
   },
 });
 
