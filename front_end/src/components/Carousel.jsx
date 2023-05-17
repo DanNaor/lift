@@ -56,18 +56,7 @@ const Carousel = ({ images }) => {
         onViewableItemsChanged={onViewRef.current}
       />
 
-      <View style={styles.dotView}>
-        {images.map((_, index) => (
-          <TouchableOpacity
-            key={index.toString()}
-            style={[
-              styles.circle,
-              { backgroundColor: index === currentIndex ? 'black' : 'grey' },
-            ]}
-            onPress={() => scrollToIndex(index)}
-          />
-        ))}
-      </View>
+   
     </View>
   );
 };
@@ -97,11 +86,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
-  },
-  dotView: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: 20,
   },
   circle: {
     width: 10,

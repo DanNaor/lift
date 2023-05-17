@@ -1,5 +1,4 @@
 import axios from 'axios';
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import Config from 'react-native-config';
 
 const API_URL = Config.API_URL_Program || '/lift-8f86f/us-central1/api/program';

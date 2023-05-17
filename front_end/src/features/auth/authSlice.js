@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAuth, signInWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, sendEmailVerification, setPersistence, signOut } from 'firebase/auth';
+import firebase from 'firebase/app';
 const initialState = {
   user: null,
-  token: null,
   isLoading: false,
   error: null,
   // isEmailVerified: false, 
@@ -30,7 +30,7 @@ export const login = createAsyncThunk(
         email: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
-        token,
+        token:token,
       };
       console.log('User logged in:', userInfo);
       return userInfo;
@@ -53,11 +53,11 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 });
 
 export const initAuth = createAsyncThunk('auth/initAuth', async () => {
-  const auth = getAuth();
-  try {
-    await auth.setPersistence(auth.Auth.Persistence.LOCAL);
+  const auth = firebase.auth();
+    try {
+    setPersistence(firebase.auth.Auth.Persistence.LOCAL);
     const user = auth.currentUser;
-
+    console.log(user)
     if (user) {
       const token = await user.getIdToken();
       const userInfo = {
@@ -65,15 +65,15 @@ export const initAuth = createAsyncThunk('auth/initAuth', async () => {
         email: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
-        token,
+        token: token
       };
-      return { userInfo, token }; 
+      return { userInfo}; 
     } else {
-      return { user: null, token: null }; 
+      return {  user:null}; 
     }
   } catch (error) {
     console.log('Error initializing authentication:', error);
-    return { user: null, token: null }; 
+    return { user: null }; 
   }
 });
 
@@ -90,8 +90,9 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = action.payload.uid;
+        console.log("user-",action.payload.uid)
+        console.log("payload-",action.payload)
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
@@ -120,7 +121,8 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(initAuth.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        console.log("payload-",action.payload)
+        state.uid = action.payload.uid;
         state.token = action.payload.token;
         state.isLoading = false;
         state.error = null;
@@ -149,8 +151,6 @@ const authSlice = createSlice({
 export default authSlice.reducer;
 
 export const selectUser = (state) => state.auth.user;
-
-export const selectToken = (state) => state.auth.token;
 
 export const selectIsLoading = (state) => state.auth.isLoading;
 

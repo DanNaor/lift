@@ -1,5 +1,5 @@
 import ChoosingScreen from '../screens/ChoosingScreen';
-import { initAuth, selectUser, selectIsLoading, selectIsEmailVerified, selectError } from '../features/auth/authSlice';
+import { initAuth,  selectIsLoading, selectIsEmailVerified, selectError, selectUser } from '../features/auth/authSlice';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useDispatch, useSelector } from 'react-redux';
 import WelcomeAndLogin from './WelcomeAndLogin';
@@ -21,9 +21,12 @@ const MainNavigator = () => {
     const isLoading = useSelector(selectIsLoading);
     // const isEmailVerified = useSelector(selectIsEmailVerified);
     const error = useSelector(selectError);
-    
+   
     useEffect(() => {
-        dispatch(initAuth)
+        const checkIfFirstTime = async () => {
+            dispatch(initAuth())
+          }; 
+          checkIfFirstTime()
     }, [])
 
     if (isLoading) {
@@ -33,9 +36,7 @@ const MainNavigator = () => {
             </View>
         );
     }
-
     if (user===null) {
-        console.log(user)
         return (
             <WelcomeAndLogin></WelcomeAndLogin>
         );
