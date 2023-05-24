@@ -1,10 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAuth, signInWithEmailAndPassword, sendEmailVerification, setPersistence, signOut } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, sendEmailVerification, setPersistence, signInWithCustomToken, signOut, onAuthStateChanged, signInWithCredential, OAuthProvider, getRedirectResult } from 'firebase/auth';
 import firebase from 'firebase/app';
 const initialState = {
-  user: null,
+
   isLoading: false,
   error: null,
+  user: {
+    uid: '',
+    displayName: '',
+    email: '',
+    photoURL: ''
+  },
+  token: ''
   // isEmailVerified: false, 
 };
 // export const verifyEmail = createAsyncThunk(
@@ -18,6 +25,7 @@ const initialState = {
 //     }
 //   }
 // );
+
 export const login = createAsyncThunk(
   'auth/login',
   async ({ email, password }) => {
@@ -30,7 +38,7 @@ export const login = createAsyncThunk(
         email: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
-        token:token,
+        token: token,
       };
       console.log('User logged in:', userInfo);
       return userInfo;
@@ -52,12 +60,21 @@ export const logout = createAsyncThunk('auth/logout', async () => {
   }
 });
 
+
 export const initAuth = createAsyncThunk('auth/initAuth', async () => {
-  const auth = firebase.auth();
-    try {
-    setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-    const user = auth.currentUser;
-    console.log(user)
+  try {
+    const auth = getAuth();
+    let user = null;
+
+    await new Promise((resolve, reject) => {
+      const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+        // console.log(user)
+        user = authUser;
+        unsubscribe(); // Unsubscribe once the user is obtained
+        resolve(); // Resolve the Promise
+      }, reject); // Reject the Promise if an error occurs
+    });
+
     if (user) {
       const token = await user.getIdToken();
       const userInfo = {
@@ -65,17 +82,20 @@ export const initAuth = createAsyncThunk('auth/initAuth', async () => {
         email: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
-        token: token
+        token: token,
       };
-      return { userInfo}; 
+      return userInfo;
     } else {
-      return {  user:null}; 
+      return null;
     }
   } catch (error) {
-    console.log('Error initializing authentication:', error);
-    return { user: null }; 
+    throw error;
   }
 });
+
+
+
+
 
 
 const authSlice = createSlice({
@@ -90,15 +110,19 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload.uid;
-        console.log("user-",action.payload.uid)
-        console.log("payload-",action.payload)
+        state.token = action.payload.token;
+        state.user = {
+          uid: action.payload.uid,
+          displayName: action.payload.displayName || '',
+          email: action.payload.email || '',
+          photoURL: action.payload.photoURL || ''
+        };
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       })
-  
+
       // logout
       .addCase(logout.pending, (state) => {
         state.isLoading = true;
@@ -106,7 +130,6 @@ const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
-        state.token = null;
         state.isLoading = false;
         state.error = null;
       })
@@ -114,37 +137,49 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message;
       })
-  
-      // initAuth
-      .addCase(initAuth.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
+
       .addCase(initAuth.fulfilled, (state, action) => {
-        console.log("payload-",action.payload)
-        state.uid = action.payload.uid;
-        state.token = action.payload.token;
+        const userInfo = action.payload;
+        console.log("userInfo-", userInfo);
+        if (userInfo) {
+          state.isLoading = false;
+          state.token = action.payload.token;
+          state.user = {
+            uid: action.payload.uid,
+            displayName: action.payload.displayName || '',
+            email: action.payload.email || '',
+            photoURL: action.payload.photoURL || ''
+          };
+        } else {
+          state.user= {
+            uid: '',
+            displayName: '',
+            email: '',
+            photoURL: ''
+          }
+          state.token= ''
+        }
         state.isLoading = false;
         state.error = null;
       })
       .addCase(initAuth.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
-      })
-  
-      // // email verification
-      // .addCase(verifyEmail.pending, (state) => {
-      //   state.isLoading = true;
-      // })
-      // .addCase(verifyEmail.fulfilled, (state) => {
-      //   state.isEmailVerified = true;
-      //   state.isLoading = false;
-      //   state.error = null;
-      // })
-      // .addCase(verifyEmail.rejected, (state, action) => {
-      //   state.isLoading = false;
-      //   state.error = action.error.message;
-      // });
+      });
+
+    // // email verification
+    // .addCase(verifyEmail.pending, (state) => {
+    //   state.isLoading = true;
+    // })
+    // .addCase(verifyEmail.fulfilled, (state) => {
+    //   state.isEmailVerified = true;
+    //   state.isLoading = false;
+    //   state.error = null;
+    // })
+    // .addCase(verifyEmail.rejected, (state, action) => {
+    //   state.isLoading = false;
+    //   state.error = action.error.message;
+    // });
   },
 });
 

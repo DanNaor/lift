@@ -67,20 +67,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   carousel: {
-    maxHeight: 300,
+    maxHeight: height/3,
   },
   image: {
     width,
-    height: 250,
+    height: "80%",
     resizeMode: 'cover',
   },
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: 50,
     paddingHorizontal: 40,
     alignItems: 'center',
     backgroundColor: '#000',
+    height:"15%"
   },
   footerText: {
     color: '#fff',

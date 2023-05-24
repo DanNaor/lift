@@ -14,14 +14,14 @@ const WelcomeScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.centered}>
         <Image
-          style={styles.image}
+          style={[styles.image,{height: height >= 750 ? height/1.9: height/1.8} ]}
           source={require('../assets/WelcomeIcon.png')}
         />
       </View>
 
       <View style={[styles.centered, styles.description_section]}>
-        <Text style={styles.title}>Welcome!</Text>
-        <Text style={styles.description_text}>
+        <Text style={[styles.title,{ fontSize: height >= 750 ? 44: 24 }]}>Welcome!</Text>
+        <Text style={[styles.description_text,{ fontSize: height >= 750 ? 28: 16 }]}>
           dan’s personal app for logging exercises stats and implementing
           progressive overload
         </Text>
@@ -35,15 +35,15 @@ const WelcomeScreen = ({ navigation }) => {
             borderRadius: 30,
           }}
           containerStyle={{
-            width: 200,
+            width: height >= 750 ? 370: 200 ,
             marginVertical: 10,
           }}
-          titleStyle={{ fontWeight: 'bold' }}
+          titleStyle={{ fontWeight: 'bold' ,fontSize: height >= 750 ? 28: 16 }}
           onPress={() => navigation.navigate('Login Screen')}
         />
-        <Text style={styles.quote}>
+        <Text style={[styles.quote,{ fontSize: height >= 750 ? 28: 16 }]}>
           “When you hit failure, your workout has just begun{'\n'}
-          <Text style={styles.underline} onPress={RONNIE_COLEMAN}>- Ronnie Coleman.</Text>
+          <Text style={[styles.underline,{ fontSize: height >= 750 ? 28: 16 }]} onPress={RONNIE_COLEMAN}>- Ronnie Coleman.</Text>
         </Text>
       </View>
     </View>
@@ -78,7 +78,6 @@ const styles = StyleSheet.create({
   image: {
     marginTop:"-10%",
     width: width,
-    height: height / 1.8,
   },
   quote: {
     fontSize: 16,

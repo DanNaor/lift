@@ -38,8 +38,8 @@ const LoginScreen = () => {
           placeholder="Email"
           value={email}
           onChangeText={setEmail}
-          fontSize={screenWidth < 400 ? 16 : 20}
-          height={screenWidth < 400 ? 40 : 50}
+          fontSize={screenWidth < 750 ? 16 : 20}
+          height={screenWidth < 750 ? 40 : 50}
         />
         <TextInput
           style={styles.input}
@@ -47,11 +47,11 @@ const LoginScreen = () => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry
-          fontSize={screenWidth < 400 ? 16 : 20}
-          height={screenWidth < 400 ? 40 : 50}
+          fontSize={screenWidth < 750 ? 16 : 20}
+          height={screenWidth < 750 ? 40 : 50}
         />
         <TouchableOpacity onPress={handleEmailSignIn} style={styles.emailButton}>
-          <Text style={[styles.emailText, {fontSize: screenWidth < 400 ? 16 : 20}]}>Sign in with Email</Text>
+          <Text style={[styles.emailText, {fontSize: screenWidth < 400 ? 16 : 30}]}>Sign in with Email</Text>
         </TouchableOpacity>
       </View>
     </View>

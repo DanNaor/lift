@@ -7,12 +7,13 @@ const verifyToken = asyncHandler(async (req, res, next) => {
     return res.status(401).send('Authorization header missing');
   }
 
-  console.log(authorizationHeader);
   try {
     const decodedToken = await admin.auth().verifyIdToken(authorizationHeader);
     req.user = decodedToken;
+    console.log("req.user-",req.user)
     next();
   } catch (err) {
+    console.log("encountered error while trying to verify token -",err)
     res.status(401).send(err);
   }
   // req.user = {

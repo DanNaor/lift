@@ -17,6 +17,7 @@ const app = express();
 // Middleware
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
+// app.use(cors());
 
   // Routes 
   // app.use("/program", programRoute);

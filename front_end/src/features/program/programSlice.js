@@ -1,19 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import programService from "./programService";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-//get program from storage
-const getProgramsList = async () => {
-  const programsList = await AsyncStorage.getItem('programs');
-  return programsList;
-}
-let ProgramsList;
-getProgramsList().then(programsList => {
-  ProgramsList = programsList;
-}).catch(error => {
-  console.log(error);
-});
+
 const initialState = {
-  ProgramsList: ProgramsList ? ProgramsList : null,
+  ProgramsList: null,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -22,21 +11,20 @@ const initialState = {
 
 export const getCurrentProgram = createAsyncThunk(
   'program/getCurrentProgram',
-  async (thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      return await programService.getCurrentProgram()
-    }
-    catch (error) {
+      const token = thunkAPI.getState().auth.token // Get the token from the auth state
+      return await programService.getCurrentProgram(token);
+    } catch (error) {
       const message = (error.response &&
         error.response.data &&
         error.response.data.message) ||
         error.message ||
-        error.toString()
-      return thunkAPI.rejectWithValue(message)
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
     }
   }
-)
-
+);
 export const programSlice = createSlice({
   name: 'programSlice',
   initialState,
@@ -58,7 +46,8 @@ export const programSlice = createSlice({
       .addCase(getCurrentProgram.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.ProgramsList = action.payload
+        console.log("action.payload-",action.payload)
+        state.ProgramsList = action.payload.practices
       })
       .addCase(getCurrentProgram.rejected, (state, action) => {
         state.isLoading = false
@@ -68,6 +57,7 @@ export const programSlice = createSlice({
       })
   }
 })
+export const selectProgram = (state) => state.program.ProgramsList;
 
 export const { reset } = programSlice.actions
 export default programSlice.reducer

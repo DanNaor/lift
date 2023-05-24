@@ -5,8 +5,7 @@ const User = require('../models/userModel')
 //@desc user data by UID
 //@route GET /api/user
 const getUser = asyncHandler(async (req, res) => {
-  console.log(req)
-  const user = await User.findOne({ UserID: req.user.UserID });
+  const user = await User.findOne({ UserID: req.user.uid });
   if (!user) {
     res.status(404);
     throw new Error("User not found");
